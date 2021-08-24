@@ -2,8 +2,9 @@
 
 ## Requirements
 
-Install `BuildKit` 
+https://github.com/docker/buildx
 
+Install `BuildKit` via Docker
 ```bash
 export DOCKER_BUILDKIT=1 \
 && docker build --platform=local -o . git://github.com/docker/buildx \
@@ -21,20 +22,22 @@ To build the Docker images that will be used on Kubernetes and export the follow
 To build and push avatica-postgresql images, run:
 
 ```bash
+export AVATICA_VERSION=1.18.0
 docker buildx build \
 --push \
 --platform linux/arm/v7,linux/arm64/v8,linux/amd64  \
 --build-arg "AVATICA_VERSION=1.18.0"  \
 --build-arg "POSTGRESQL_VERSION=42.0.0"  \
---tag sirensolutions/avatica-postgresql:1.18.0 postgre
+--tag sirensolutions/avatica-postgresql:${AVATICA_VERSION} postgre
 ```
 
 To build and push avatica images, run:
 
 ```bash
+export AVATICA_VERSION=1.18.0
 docker buildx build \
 --push \
 --platform linux/arm/v7,linux/arm64/v8,linux/amd64  \
 --build-arg "AVATICA_VERSION=1.18.0"  \
---tag sirensolutions/avatica:1.18.0 .
+--tag sirensolutions/avatica:${AVATICA_VERSION} .
 ```
