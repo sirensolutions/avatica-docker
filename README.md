@@ -29,7 +29,9 @@ docker buildx build \
 --platform linux/arm64,linux/amd64  \
 --build-arg "AVATICA_VERSION=1.18.0"  \
 --build-arg "POSTGRESQL_VERSION=42.0.0"  \
---tag sirensolutions/avatica-postgresql:${AVATICA_VERSION} postgre
+--tag sirensolutions/avatica-postgresql:${AVATICA_VERSION} \
+-f postgre/Dockerfile \
+postgre
 ```
 
 To build and push avatica images, run:
@@ -40,5 +42,6 @@ docker buildx build \
 --push \
 --platform linux/arm64,linux/amd64  \
 --build-arg "AVATICA_VERSION=1.18.0"  \
---tag sirensolutions/avatica:${AVATICA_VERSION} .
+--tag sirensolutions/avatica:${AVATICA_VERSION} 
+.
 ```
